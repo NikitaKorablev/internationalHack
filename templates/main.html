@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <title>Document</title>
+    <script src="{{ url_for('static', filename='js/response.js') }}"></script>
 </head>
 <body>
-    
+    <form id="myForm" action="/api/v1.0/post" method="POST" multiple>
+        <input name="file" type="file" id="inpFile"><br>
+        <button type="submit">Upload file</button>
+    </form>
 </body>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </html>

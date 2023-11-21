@@ -1,4 +1,9 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
+from werkzeug.utils import secure_filename
+import os
+
+# папка для сохранения загруженных файлов
+UPLOAD_FOLDER = './data_sience/'
 
 import configparser
 config = configparser.ConfigParser()
@@ -23,12 +28,17 @@ def get():
     
     return jsonify(answer)
 
-@app.route('/api/v1.0/post', methods=['POST'])
+@app.route('/api/v1.0/post', methods=['POST']) # пока написал здесь созранение файлов
 def post():
     answer = json_template.copy()
 
+    print(request.files)
+    file = request.files['file']
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(UPLOAD_FOLDER, filename))
     # операции с answer
-    
+    answer['data'] = filename
+    answer['status'] = True
     return jsonify(answer)
 
 @app.route('/')
