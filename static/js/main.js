@@ -37,7 +37,7 @@ function handleSubmit(event) {
   /**@type {HTMLFormElement} */
   const form = event.currentTarget;
   const url = new URL(form.action);
-  let formData = new FormData(form);
+  const formData = new FormData(form);
 
   /**@type {Parametrs<fetch>[1]} */
   const fetchOptions = {
